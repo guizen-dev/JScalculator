@@ -1,15 +1,17 @@
 var num = true
 var count = ['', '']
 var aditionalCount = ''
-var expression = ''
+var expression = undefined
 var result = ''
 
 
 //function that adds the number to the main input
 function addNumber(number){
     mainInput = document.getElementById("mainInput");
-    if (mainInput.value == '0'){
+    if (mainInput.value == '0' && number !== '.'){
         mainInput.value = number
+    }else if(mainInput.value == '0' && number == '.'){
+        mainInput.value = mainInput.value + number
     }else{
         mainInput.value = mainInput.value + number;
     }
@@ -57,8 +59,22 @@ function cleanInputs(){
     smallInput.value = ''
     count[0] = ''
     count[1] = ''
-    expression = ''
+    expression = undefined
     num = true
+    aditionalCount = ''
+}
+
+function equalClick(){
+    mainInput = document.getElementById("mainInput");
+    smallInput = document.getElementById("smallInput");
+
+    mainInput.value = smallInput.value
+    smallInput.value = ''
+    count[0] = smallInput.value
+    count[1] = ''
+    expression = undefined
+    num = true
+    aditionalCount = ''
 }
 
 
@@ -75,38 +91,43 @@ function cancelClick(){
 }
 
 function getInputData(num, exp){
+    mainInput = document.getElementById("mainInput");
+    if (result == ''){
 
-    if (result !== ''){
-
-        if(num === ''){
+        if(num == ''){
             expression = exp
         }
     
-        if(exp == ''){
+        if(expression === undefined){
             count[0] = count[0] + num
     
         }else{
             count[1] = count[1] + num
         }
 
-        if(count[0] !== '' && count[1] !== ''){
+        if(count[0] !== '' && count[1] !== '' && expression !== undefined){
             console.log(count[0])
             console.log(expression)
             console.log(count[1])
             calculate(false)
+            expression = undefined
         }
     }else{
-        if (num !== ''){
+        if (num !== '' && expression !== undefined){
             aditionalCount = aditionalCount + num
+        }else if(num !== '' && expression === undefined){
+            result = mainInput.value
         }else if(exp !== ''){
             expression = exp
         }
 
-        if(aditionalCount !== '' && expression !== ''){
+        if(aditionalCount !== '' && expression !== undefined){
             console.log(result)
             console.log(expression)
             console.log(aditionalCount)
             calculate(true)
+            aditionalCount = ''
+            expression = undefined
         }
 
     }
@@ -117,13 +138,17 @@ function calculate(isResultValid){
 
     if(isResultValid){
         if(expression=='+'){
-            result = result + parseFloat(aditionalCount)
+            result = parseFloat(result) + parseFloat(aditionalCount)
+            console.log(result)
         }if(expression=='-'){
-            result = result - parseFloat(aditionalCount)
+            result = parseFloat(result) - parseFloat(aditionalCount)
+            console.log(result)
         }if(expression=='x'){
-            result = result * parseFloat(aditionalCount)
+            result = parseFloat(result) * parseFloat(aditionalCount)
+            console.log(result)
         }if(expression=='÷'){
-            result = result / parseFloat(aditionalCount)
+            result = parseFloat(result) / parseFloat(aditionalCount)
+            console.log(result)
         }
     }else{
         if(expression=='+'){
