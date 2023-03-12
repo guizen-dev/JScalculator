@@ -84,10 +84,14 @@ function cancelClick(){
 
     if(mainInput.value.length>1){
         mainInput.value = mainInput.value.substring(0, mainInput.value.length-1);
+        if (mainInput.value.slice(-1) == 'x' || mainInput.value.slice(-1) == '+' || mainInput.value.slice(-1) == '-' || mainInput.value.slice(-1) == '÷'){
+            num = false
+        }else{
+            num = true
+        }
     }else{
         mainInput.value = '0'
     }
-    num = true
 }
 
 function getInputData(num, exp){
