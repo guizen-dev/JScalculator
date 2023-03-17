@@ -15,7 +15,7 @@
             
           <input class="small-input" value="" id="smallInput" autocomplete="off" disabled />
             <div class="calculator-screen d-flex align-items-center justify-content-center">
-                <input type="text" class="input" value="0" id="mainInput" autocomplete="off" disabled />
+                <textarea rows="1" type="text" class="input textarea" value="0" id="mainInput" autocomplete="off" disabled></textarea>
             </div>
 
             
@@ -23,13 +23,13 @@
           
               <button type="button" class="operator btn btn-danger btn-shadow delete-sign" onclick="cancelClick()"><img class="delete-icon" src="./style/imgs/icons8-clear-symbol-50.png" alt=""></button>
               <button type="button" value="9" class="btn btn-danger waves-effect btn-shadow" onclick ="cleanInputs()">AC</button>
-              <button type="button" class="operator btn btn-dark btn-shadow" value="÷" onclick="expressionClick(this.value)">&divide;</button>
+              <button type="button" class="operator btn btn-dark btn-shadow" value="/" onclick="expressionClick(this.value)">&divide;</button>
           
               <button type="button" value="7" class="btn btn-dark waves-effect btn-shadow" onclick="numberClick(this.value)" >7</button>
               <button type="button" value="8" class="btn btn-dark waves-effect btn-shadow" onclick="numberClick(this.value)" >8</button>
               <button type="button" value="9" class="btn btn-dark waves-effect btn-shadow" onclick="numberClick(this.value)" >9</button>
 
-              <button type="button" class="operator btn btn-dark btn-shadow"  value="x" onclick="expressionClick(this.value)">&times;</button>
+              <button type="button" class="operator btn btn-dark btn-shadow"  value="*" onclick="expressionClick(this.value)">&times;</button>
           
               <button type="button" value="4" class="btn btn-dark waves-effect btn-shadow" onclick="numberClick(this.value)" >4</button>
               <button type="button" value="5" class="btn btn-dark waves-effect btn-shadow" onclick="numberClick(this.value)" >5</button>

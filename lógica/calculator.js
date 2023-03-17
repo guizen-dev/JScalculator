@@ -36,7 +36,7 @@ function changeExpression(expression){
 //function that handles the numbers click
 function numberClick(number) {
     addNumber(number)
-    getInputData(number, '')
+    evalInput()
 }
 
 //functiont that handle the expression click
@@ -44,10 +44,10 @@ function expressionClick(expression){
     mainInput = document.getElementById("mainInput");
     if(num==true && mainInput.value!=='0'){
         addExpression(expression)
-        getInputData('', expression)
+        evalInput()
     }else if(num==false && mainInput.value!=='0'){
         changeExpression(expression)
-        getInputData('', expression)
+        evalInput()
     }
 }
 
@@ -94,77 +94,13 @@ function cancelClick(){
     }
 }
 
-function getInputData(num, exp){
+function evalInput(){
     mainInput = document.getElementById("mainInput");
-    if (result == ''){
-
-        if(num == ''){
-            expression = exp
-        }
-    
-        if(expression === undefined){
-            count[0] = count[0] + num
-    
-        }else{
-            count[1] = count[1] + num
-        }
-
-        if(count[0] !== '' && count[1] !== '' && expression !== undefined){
-            console.log(count[0])
-            console.log(expression)
-            console.log(count[1])
-            calculate(false)
-            expression = undefined
-        }
-    }else{
-        if (num !== '' && expression !== undefined){
-            aditionalCount = aditionalCount + num
-        }else if(num !== '' && expression === undefined){
-            result = mainInput.value
-        }else if(exp !== ''){
-            expression = exp
-        }
-
-        if(aditionalCount !== '' && expression !== undefined){
-            console.log(result)
-            console.log(expression)
-            console.log(aditionalCount)
-            calculate(true)
-            aditionalCount = ''
-            expression = undefined
-        }
-
-    }
-}
-
-function calculate(isResultValid){
     smallInput = document.getElementById("smallInput");
 
-    if(isResultValid){
-        if(expression=='+'){
-            result = parseFloat(result) + parseFloat(aditionalCount)
-            console.log(result)
-        }if(expression=='-'){
-            result = parseFloat(result) - parseFloat(aditionalCount)
-            console.log(result)
-        }if(expression=='x'){
-            result = parseFloat(result) * parseFloat(aditionalCount)
-            console.log(result)
-        }if(expression=='÷'){
-            result = parseFloat(result) / parseFloat(aditionalCount)
-            console.log(result)
-        }
-    }else{
-        if(expression=='+'){
-            result = parseFloat(count[0]) + parseFloat(count[1])
-        }if(expression=='-'){
-            result = parseFloat(count[0]) - parseFloat(count[1])
-        }if(expression=='x'){
-            result = parseFloat(count[0]) * parseFloat(count[1])
-        }if(expression=='÷'){
-            result = parseFloat(count[0]) / parseFloat(count[1])
-        }
+    result = eval(mainInput.value)
+    
+    if(result !== undefined){
+        smallInput.value = result
     }
-
-    smallInput.value = result.toString()
 }
